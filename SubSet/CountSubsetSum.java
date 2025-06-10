@@ -1,27 +1,33 @@
 package SubSet;
 
 public class CountSubsetSum {
-   public  static int count(int idx, int [] nums, int k){
+   public  static int count(int idx, int [] nums, int k , int [][] dp){
         if(k == 0) return 1;
         if(idx==0) return nums[idx]==k ? 1:0;
+        if(dp[idx][k] != -1) return dp[idx][k];
         // noTake 
-        int noTake = count(idx-1 , nums, k);
+        int noTake = count(idx-1 , nums, k, dp);
         // take
         int Take = 0;
         if(nums[idx]<=k){
-            Take = count(idx-1, nums, k-nums[idx]);
+            Take = count(idx-1, nums, k-nums[idx], dp);
         }
 
-        return Take + noTake;
+        return  dp[idx][k] = Take + noTake;
     }
-    public int subarraySum(int[] nums, int k) {
-        int n = nums.length;
-        return count(n-1, nums, k);
-    }
+ 
   public static void main(String[] args) {
     int nums[] = {1,2,3};
+    int n = nums.length;
     int target = 3;
-    int ans = count(nums.length -1, nums, target);
+    int [][]dp = new int[n][target+1];
+    for (int i = 0; i < n; i++) {
+    for (int j = 0; j <= target; j++) {
+        dp[i][j] = -1;
+    }
+}
+
+    int ans = count(nums.length -1, nums, target , dp);
     System.out.println(ans);
   }
 }
