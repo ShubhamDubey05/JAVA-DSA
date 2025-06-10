@@ -21,13 +21,27 @@ public class CountSubsetSum {
     int n = nums.length;
     int target = 3;
     int [][]dp = new int[n][target+1];
-    for (int i = 0; i < n; i++) {
-    for (int j = 0; j <= target; j++) {
-        dp[i][j] = -1;
-    }
-}
+    // for (int i = 0; i < n; i++) {
+    // for (int j = 0; j <= target; j++) {
+    //     dp[i][j] = -1;
+    // }
+// }
+      for(int i =0; i<n; i++){
+        dp[i][0] = 1;
+      }
+      if(nums[0] <= target){
+        dp[0][nums[0]] =1;
+      }
+      for(int i=1; i<n; i++){
+        for(int j = 0 ; j<=target;j++){
+          int notake  = dp[i-1][j];
+          int take = dp[i-1][target - j];
+           dp[i][j] = take + notake;
+        }
+      }
 
-    int ans = count(nums.length -1, nums, target , dp);
+    // int ans = count(nums.length -1, nums, target , dp);
+    int ans = dp[n-1][target];
     System.out.println(ans);
   }
 }
