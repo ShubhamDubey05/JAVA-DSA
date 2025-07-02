@@ -1,6 +1,6 @@
 package BuyandSell;
 
-public class BuyandSell1 {
+public class BuyandSell3 {
   public static void main(String[] args) {
     int [] prices = { 7, 1, 5, 3 ,6, 4};
     int n = prices.length;
@@ -36,5 +36,20 @@ public class BuyandSell1 {
       }
       System.out.println();
      System.out.println(op);
+
+
+
+
+     int buy1 = Integer.MAX_VALUE;
+     int profit1  = 0;
+     int buy2 = Integer.MAX_VALUE;
+     int profit2 = 0;
+     for(int price : prices){
+         buy1 = Math.min( buy1, price);
+         profit1 = Math.max(profit, price - buy1);
+         buy2  = Math.min(buy2, price-profit1 );
+         profit2 = Math.max(profit2, price- buy2);
+     }
+     System.out.println(profit2);
   }
 }
