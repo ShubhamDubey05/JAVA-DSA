@@ -1,4 +1,4 @@
-package DynamicProgramming.KnapsackProblem;
+package  KnapsackProblem;
 
 public class KnapSack {
      public static int solve2(int [] val , int [] wt, int cap){
